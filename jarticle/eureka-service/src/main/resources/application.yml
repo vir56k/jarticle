@@ -1,0 +1,15 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: articleservice     # 将在 Eureka 注册的服务的逻辑名称
+  profiles:
+    active: dev
+
+eureka:
+  client:
+    registerWithEureka: false   #服务注册，是否将自己注册到Eureka服务中
+    fetchRegistry: false        #服务发现，是否从Eureka中获取注册信息
+  server:
+    waitTimeInMsWhenSyncEmpty: 5

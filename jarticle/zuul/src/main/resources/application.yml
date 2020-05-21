@@ -1,0 +1,37 @@
+server:
+  port: 11111
+
+spring:
+  application:
+    name: zuul     # 将在 Eureka 注册的服务的逻辑名称
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+#ribbon:
+#  eureka:
+#    enabled: false
+
+zuul:
+  ignored-services: '*'
+  prefix: /api
+  routes:
+    articleservice: /article/**
+    userservice: /user/**
+  sensitive-headers: Access-Control-Allow-Origin
+#  ignored-headers: Access-Control-Allow-Credentials,Access-Control-Allow-Origin,Vary,X-Frame-Options
+
+
+# 开放健康检查接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "routes"
+

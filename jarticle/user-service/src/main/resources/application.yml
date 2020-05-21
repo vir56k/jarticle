@@ -1,0 +1,19 @@
+server:
+  port: 11090
+
+spring:
+  application:
+    name: userservice     # 将在 Eureka 注册的服务的逻辑名称
+  profiles:
+    active: dev
+
+eureka:
+  instance:
+    preferIpAddress: true   #注册服务的 IP 而不是服务器名称。
+  client:
+    registerWithEureka: true
+    fetchRegistry: true     #下拉注册信息并复制一份到本地
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+

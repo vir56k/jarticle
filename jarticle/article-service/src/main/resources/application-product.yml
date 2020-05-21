@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/iconz_release?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: Springbootplus636!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+my-resouce-config:
+  build_type: product
