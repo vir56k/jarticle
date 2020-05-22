@@ -3,6 +3,6 @@
 
 
 # 查看注册了哪些服务
-打开 http://localhost:8761/
+打开 http://localhost:11200/
 
 

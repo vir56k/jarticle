@@ -1,11 +1,13 @@
-FROM alpine:latest
+FROM openjdk:8-jdk-alpine
+RUN  apk update && apk upgrade && apk add netcat-openbsd
 
-RUN mkdir /app
-COPY /data /app/data
+RUN mkdir -p /article-service
+ADD ./target/article-service-0.0.1-SNAPSHOT.jar /article-service/
 
+# 添加一些测试数据
+ADD ./data /data
 
-WORKDIR /app
+ADD ./run.sh run.sh
+RUN chmod +x run.sh
 
-ADD article-service /app/article-service
-
-CMD ["./article-service"]
+CMD ./run.sh
