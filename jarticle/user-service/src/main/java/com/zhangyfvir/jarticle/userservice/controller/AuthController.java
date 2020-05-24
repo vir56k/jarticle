@@ -3,6 +3,7 @@ package com.zhangyfvir.jarticle.userservice.controller;
 import com.zhangyfvir.jarticle.common.entity.Result;
 import com.zhangyfvir.jarticle.userservice.components.JwtUtils;
 import com.zhangyfvir.jarticle.userservice.entity.AuthData;
+import com.zhangyfvir.jarticle.userservice.entity.User;
 import com.zhangyfvir.jarticle.userservice.entity.UserInfo;
 import com.zhangyfvir.jarticle.userservice.services.UserService;
 import com.zhangyfvir.jarticle.utils.*;
@@ -43,16 +44,30 @@ public class AuthController {
         if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
             return Result.error(500, "参数错误");
         }
-        UserInfo user = userService.login(username, password);
-        if (user != null) {
+        User user = null;
+        try {
+            user = userService.login(username, password);
+            if (user == null) {
+                LogUtil.d(TAG, "用户不存在");
+                return Result.error(500, "login failure");
+            }
             String token = userService.buildToken(user.getId() + "");
             AuthData authData = new AuthData(token);
             authData.setUserInfo(user);
             return Result.success(authData);
+        } catch (Exception e) {
+            e.printStackTrace();
+            LogUtil.d(TAG, "login failure");
+            return Result.error(500, "login failure");
         }
-        LogUtil.d(TAG, "login failure");
-        return Result.error(500, "login failure");
     }
+
+    @RequestMapping(value = "/all")
+    public Result<UserInfo[]> getAll() {
+        UserInfo[] all = userService.getAll();
+        return Result.success(all);
+    }
+
 
     private UserInfo getUserInfo() {
         return null;

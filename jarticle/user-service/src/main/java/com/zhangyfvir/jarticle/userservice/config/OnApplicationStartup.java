@@ -16,6 +16,9 @@ public class OnApplicationStartup implements ApplicationListener<ContextRefreshe
     private static final String TAG = "ApplicationStartup";
 
     @Autowired
+    private DataBaseHelper mDataBaseHelper;
+
+    @Autowired
     private RequestMappingHandlerMapping handlerMapping;
 
     @Override
@@ -24,6 +27,8 @@ public class OnApplicationStartup implements ApplicationListener<ContextRefreshe
         // 初始化完成后. 执行一次同步系统参数
         onSetupSystem(contextRefreshedEvent.getApplicationContext());
 
+        //初始化数据库
+        mDataBaseHelper.initDatabase();
     }
 
     private void onSetupSystem(ApplicationContext context) {

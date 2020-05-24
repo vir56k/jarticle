@@ -5,7 +5,6 @@ echo "Waiting for the eureka server($EUREKA_SERVER) to start on port $EUREKASERV
 echo "********************************************************"
 while ! `nc -z $EUREKA_SERVER  $EUREKASERVER_PORT`; do sleep 3; done
 echo "******* Eureka Server has started"
-
 echo "********************************************************"
 echo "Starting user-service Service                           "
 echo "Using profile: $PROFILE"

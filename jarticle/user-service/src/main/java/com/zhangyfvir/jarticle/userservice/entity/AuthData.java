@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class AuthData {
     private String token;
-    private UserInfo userInfo;
+    private User userInfo;
 
     public AuthData(String token) {
         this.token = token;

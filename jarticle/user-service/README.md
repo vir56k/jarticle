@@ -1,3 +1,7 @@
+# 启动
+
+./mvnw spring-boot:run
+
 
 
 # docker-compose 方式 启动服务的顺序
@@ -19,4 +23,5 @@ $ docker run --name postgres -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 postg
 
 
 
-
+# 密码加密方法参考文章
+https://blog.csdn.net/lxbjkben/article/details/103025207

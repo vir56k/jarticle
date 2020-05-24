@@ -1,6 +1,9 @@
 down_all:
 	docker-compose down --rmi all -v --remove-orphans
 
+up_datebase:
+	docker-compose up -d database
+
 up_all:
 	docker-compose rm -f -v -s eureka | true
 	docker-compose rm -f -v -s zuul | true
@@ -24,7 +27,7 @@ up_zuul:
 up_user:
 	cd user-service && make justBuild
 	docker-compose rm -f -v -s user | true
-	docker-compose up -d --remove-orphans --build user
+	docker-compose up  -d --remove-orphans --build user
 
 up_article:
 	cd article-service && make justBuild
