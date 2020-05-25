@@ -1,8 +1,14 @@
 down_all:
 	docker-compose down --rmi all -v --remove-orphans
 
+stop_all:
+	docker-compose stop
+
 up_datebase:
 	docker-compose up -d database
+
+up_rabbitmq:
+	docker-compose up -d rabbitmq
 
 up_all:
 	docker-compose rm -f -v -s eureka | true

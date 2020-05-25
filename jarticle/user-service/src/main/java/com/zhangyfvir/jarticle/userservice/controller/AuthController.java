@@ -25,7 +25,6 @@ public class AuthController {
     private static final String TAG = AuthController.class.getSimpleName();
     private UserService userService;
 
-
     @Autowired
     public AuthController(UserService userService) {
         this.userService = userService;
@@ -66,6 +65,17 @@ public class AuthController {
     public Result<UserInfo[]> getAll() {
         UserInfo[] all = userService.getAll();
         return Result.success(all);
+    }
+
+    @RequestMapping(value = "/mq")
+    public Result mq() {
+        try {
+            userService.mq();
+            return Result.success();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.error(500, e.getMessage());
+        }
     }
 
 

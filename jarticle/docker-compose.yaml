@@ -45,11 +45,19 @@ services:
       EUREKASERVER_PORT: "8761"
       EUREKASERVER_URI: "http://eureka:8761/eureka/"
       DB_URL: "jdbc:mysql://database:3306/jarticle?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC"
+      RABBITMQ_USER_NAME: "admin"
+      RABBITMQ_PASSWORD: "admin"
+      RABBITMQ_VIRTUAL_HOST: "/"
+      RABBITMQ_HOST_NAME: "rabbitmq"
+      RABBITMQ_PORT_NUMBER: "5672"
+
     links:
       - eureka
       - database
+      - rabbitmq
     depends_on:
       - database
+      - rabbitmq
 
   database:
     image: mysql
@@ -57,3 +65,14 @@ services:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: "123456"
+
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_VHOST=/
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin

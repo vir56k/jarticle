@@ -20,3 +20,11 @@ eureka:
     fetchRegistry: true     #下拉注册信息并复制一份到本地
     serviceUrl:
       defaultZone: ${EUREKASERVER_URI:http://localhost:8761/eureka/}
+
+rabbitmq:
+  config:
+    userName: ${RABBITMQ_USER_NAME:"admin"}
+    password: ${RABBITMQ_PASSWORD:"admin"}
+    virtualHost: ${RABBITMQ_VIRTUAL_HOST:"/"}
+    hostName: ${RABBITMQ_HOST_NAME:localhost}
+    portNumber: ${RABBITMQ_PORT_NUMBER:5672}
